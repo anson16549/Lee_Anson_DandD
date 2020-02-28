@@ -3,8 +3,8 @@
 	const puzzleButtons = document.querySelectorAll('#buttonHolder img'),
 		puzzlePieces = document.querySelectorAll('.puzzle-pieces img'),
 		dropZones = document.querySelectorAll('.drop-zone'),
-		gameBoard = document.querySelector('.puzzle-board');
-
+		gameBoard = document.querySelector('.puzzle-board'),
+		dragZones = document.querySelector('.puzzle-pieces');
 		const pieceNames = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
 	function changeImageSet() {
 	// change all the image elements on the page -> draglbabe image sources
@@ -41,10 +41,17 @@
 
 		event.target.appendChild(document.querySelector(`#${currentImage}`))
 }
-//
+	function reset(event) {
+		for (let i = 0; i < puzzlePieces.length; i++) {
+			dragZones.appendChild(puzzlePieces[i]);
+		}
+	}
 // add event handling herepuzzleButtons.forEach(button => button.addEventListener('click', changeImageSet));
 // 
-	puzzleButtons.forEach(button => button.addEventListener('click', changeImageSet));
+	puzzleButtons.forEach(button => {
+		button.addEventListener('click', reset);
+		button.addEventListener('click', changeImageSet);
+	});
 
 	puzzlePieces.forEach(piece => piece.addEventListener('dragstart', allowDrag));
 
