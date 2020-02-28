@@ -28,14 +28,12 @@
 	}
 
 	function allowDragOver(event) {
+		if(this.childNodes.length == 0) {
 		event.preventDefault();
 		console.log('dragged over a drop zone');
 	}
-
-	function allowDrop(event) {
-		//event.preventDefult();
-		console.log('dragged on a drop zone');
 	}
+
 	function allowDrop(event) {
 		console.log('dragged on a drop zone');
 
